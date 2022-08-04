@@ -15,11 +15,11 @@ We start by running the docker daemon service
 
 which should open the bash shell and look something like this.
 
-![Getting Started](./bash.png)
+![Getting Started](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/bash.png)
 
 Once it is booted up, we need to run the **flow.tcl** file. Another important thing to note here is that the file needs to be run interactively which allows us to run the Openlane Tool in a step by step process rather than running all the commands at once as shown in the picture.
 
-![OpenLane Tool](./flowtcl.png)
+![OpenLane Tool](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/flowtcl.png)
 
 Next step is importing all the packages required for running the flow using command
 
@@ -30,7 +30,7 @@ Now, setting up the design preparation stage. OpenLane has quite a few design wh
 `prep -design picorv32a` 
 
 This also merges cell and technology level lef files. Once finished preparation, the shell should look something like this
-![Prepare the Design](./PrepDesign.png)
+![Prepare the Design](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/PrepDesign.png)
 
 After preparation is finished, next step is running the synthesis.
 
@@ -38,7 +38,7 @@ After preparation is finished, next step is running the synthesis.
 
 It runs both YOSYS and ABC synthesis and may take up to 3-5 mins. It should return a synthesis was successful message. It returns loads of information regarding the processor which can be accessed for further assessment.
 
-![Successful Synthesis](./synthesis.png)
+![Successful Synthesis](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/synthesis.png)
 
 The task for Day 1 is to calculate the flop Ratio for D Flip-Flop which is an important factor in guaging a processor performance. It is nothing but ratio of number of D Flip-Flops to the number of total cells.
 
