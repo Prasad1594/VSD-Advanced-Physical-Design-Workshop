@@ -45,3 +45,56 @@ The task for Day 1 is to calculate the flop Ratio for D Flip-Flop which is an im
 ![Flop Ratio](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/flopration.png)
 
 As seen in the image, the number of D Flip-Flops are **1613** and the number of total cells are **14876** which gives us the Flop Ratio of **0.1084** or **10.84%**
+
+## Day 2 - Floorplanning
+
+A netlist defines connectivity between all the components in the circuit. The chip consists of two main components viz. Core and Die. Core is encapsulated in the Die and holds all the logic components of the chip.
+
+Utilization factor of a chip is defined as the ratio of area occupied by all the blocks to the total available area.
+
+An Aspect Ratio of a chip is defined as ratio of height to the width of the chip. An aspect ratio of 1 indicates a square chip.
+
+The arrangement of a set of block which is better known as an IP is called as **Floorplanning**
+
+Day 2 of the lab focusses on Floorplanning which is the next step after running the synthesis.
+
+Floorplan can be run using the command
+
+`run_floorplan`
+
+It is important to have a less dense design during initial phase to meet the timing constraints.
+A successful floorplan run should return something like this.
+![Floorplan](floorplansuccess.png)
+
+Bash shell can only do as much as return if the floorplan was successful. However, wouldn't it be awesome to see the actual layout after the floorplan? This is where another tool called as **Magic** comes in. To see the layout in Magic, we need to change the active directory where our floorplan results are located. In this case, let's change the directory to
+
+`Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-08_02-14/results/floorplan/`
+
+Viewing the layout consists of two steps:
+
+- Run Magic with Tec file and merged lef file
+
+`magic -T /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech`
+
+- Read the already merged def file
+
+`read ../../tmp/merged.lef def read picorv32a.floorplan.def`
+
+This is the completely loaded layout in Magic.
+![Floorplan Layout](floorplan.png)
+
+The next stage in design after Floorplan is the Placement stage. Main focus of this stage is to reduce the Half Parameter Wire Length which can be run using command,
+
+`run_placement`
+
+A successful placement run should return something like this. A change in HPWL can be observed here after successful run placement.
+
+![Placement](successfulplacement.png)
+
+Similar to floorplan, to view the placement we need to navigate one folder up and again run the **magic** tool.
+
+`magic -T /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech read ../../tmp/merged.lef def read picorv32a.placement.def`
+
+It can be observed from the Magic Toll that all the standard cells have now been populated on the floorplan.
+
+![Standard Cells](placementsdc.png)
