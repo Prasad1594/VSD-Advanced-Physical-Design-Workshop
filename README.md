@@ -70,7 +70,9 @@ Day 2 of the lab focusses on Floorplanning which is the next step after running 
 
 Floorplan can be run using the command
 
-```run_floorplan```
+```
+run_floorplan
+```
 
 It is important to have a less dense design during initial phase to meet the timing constraints.
 A successful floorplan run should return something like this.
@@ -78,24 +80,32 @@ A successful floorplan run should return something like this.
 
 Bash shell can only do as much as return if the floorplan was successful. However, wouldn't it be awesome to see the actual layout after the floorplan? This is where another tool called as **Magic** comes in. To see the layout in Magic, we need to change the active directory where our floorplan results are located. In this case, let's change the directory to
 
-```Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-08_02-14/results/floorplan/```
+```
+Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-08_02-14/results/floorplan/
+```
 
 Viewing the layout consists of two steps:
 
 - Run Magic with Tec file and merged lef file
 
-```magic -T /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech```
+```
+magic -T /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech
+```
 
 - Read the already merged def file
 
-```read ../../tmp/merged.lef def read picorv32a.floorplan.def```
+```
+read ../../tmp/merged.lef def read picorv32a.floorplan.def
+```
 
 This is the completely loaded layout in Magic.
 ![Floorplan Layout](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/floorplan.png)
 
 The next stage in design after Floorplan is the Placement stage. Main focus of this stage is to reduce the Half Parameter Wire Length which can be run using command,
 
-```run_placement```
+```
+run_placement
+```
 
 A successful placement run should return something like this. A change in HPWL can be observed here after successful run placement.
 
@@ -103,7 +113,9 @@ A successful placement run should return something like this. A change in HPWL c
 
 Similar to floorplan, to view the placement we need to navigate one folder up and again run the **magic** tool.
 
-```magic -T /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech read ../../tmp/merged.lef def read picorv32a.placement.def```
+```
+magic -T /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech read ../../tmp/merged.lef def read picorv32a.placement.def
+```
 
 It can be observed from the Magic Tool that all the standard cells have now been populated on the floorplan.
 
