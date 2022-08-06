@@ -64,7 +64,7 @@ Floorplan can be run using the command
 
 It is important to have a less dense design during initial phase to meet the timing constraints.
 A successful floorplan run should return something like this.
-![Floorplan](floorplansuccess.png)
+![Floorplan](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/floorplansuccess.png)
 
 Bash shell can only do as much as return if the floorplan was successful. However, wouldn't it be awesome to see the actual layout after the floorplan? This is where another tool called as **Magic** comes in. To see the layout in Magic, we need to change the active directory where our floorplan results are located. In this case, let's change the directory to
 
@@ -81,7 +81,7 @@ Viewing the layout consists of two steps:
 `read ../../tmp/merged.lef def read picorv32a.floorplan.def`
 
 This is the completely loaded layout in Magic.
-![Floorplan Layout](floorplan.png)
+![Floorplan Layout](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/floorplan.png)
 
 The next stage in design after Floorplan is the Placement stage. Main focus of this stage is to reduce the Half Parameter Wire Length which can be run using command,
 
@@ -89,7 +89,7 @@ The next stage in design after Floorplan is the Placement stage. Main focus of t
 
 A successful placement run should return something like this. A change in HPWL can be observed here after successful run placement.
 
-![Placement](successfulplacement.png)
+![Placement](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/successfulplacement.png)
 
 Similar to floorplan, to view the placement we need to navigate one folder up and again run the **magic** tool.
 
@@ -97,4 +97,4 @@ Similar to floorplan, to view the placement we need to navigate one folder up an
 
 It can be observed from the Magic Toll that all the standard cells have now been populated on the floorplan.
 
-![Standard Cells](placementsdc.png)
+![Standard Cells](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/placementsdc.png)
