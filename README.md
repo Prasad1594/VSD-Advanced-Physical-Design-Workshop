@@ -95,6 +95,6 @@ Similar to floorplan, to view the placement we need to navigate one folder up an
 
 `magic -T /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech read ../../tmp/merged.lef def read picorv32a.placement.def`
 
-It can be observed from the Magic Toll that all the standard cells have now been populated on the floorplan.
+It can be observed from the Magic Tool that all the standard cells have now been populated on the floorplan.
 
 ![Standard Cells](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/placementsdc.png)
