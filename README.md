@@ -196,4 +196,4 @@ The cell rise delay can be calculated using this output graph.
 
 ![Cell Rise Delay](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/cellrise.png)
 
-Calculating the difference in rise times, we can get the Rise delay $ 2.206 - 2.149 = 0.057ns $. Using similar method we can calculate the falling delay from the falling edge, $ 4.074 - 4.050 = 0.024ns $.
+Calculating the difference in rise times, we can get the Rise delay $2.206 - 2.149 = 0.057ns$. Using similar method we can calculate the falling delay from the falling edge, $4.074 - 4.050 = 0.024ns$.
