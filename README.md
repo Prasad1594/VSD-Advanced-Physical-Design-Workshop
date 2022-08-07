@@ -120,3 +120,78 @@ magic -T /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/pdks/sky13
 It can be observed from the Magic Tool that all the standard cells have now been populated on the floorplan.
 
 ![Standard Cells](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/placementsdc.png)
+
+## Day 3 - Designing Library Cell and NGSpice Characterization
+
+A Spice Deck is connectivity information of the cells using Netlist.
+
+For the Spice simulation, we will be using a pre-built Standard Cell Design library built by @Nickson-jose.
+
+We start by copying our sky130A .tech file to the cloned standard cell repository.
+
+We can see our recently copied CMOS inverter in Magic Tool by loading the tech file.
+
+![Inverter](inverter.png)
+
+We will try to extract the Spice netlist from the Inverter using **tkcon** 
+
+```
+extract all
+```
+
+![Extract Spice Netlist](extractspice.png)
+
+As seen in the image, it will extract the design into ext file. This ext file can be used to create the spice file.
+
+```
+ext2spice cthresh 0 rthresh 0
+```
+
+![Extract to Spice](ext2spice.png)
+
+This is the extracted Spice File
+![Spice File](spicefile.png)
+
+It can be observed from the Spice file that the actual dimensions do not correspond to dimensions in Spice file which are 10000u. Hence, they need to be changed to the dimensions corresponding to 1 box which is 0.01u.
+
+We also need to include the pmos and nmos library files in the Spice file
+
+```
+.include ./libs/pshort.lib
+.include ./libs/nshort.lib
+```
+
+We need to specify the Source and Drain voltages as well as the Pulsating voltage. Here the **VDD** is 3.3V which is connected between **VPWR** and **VSS** is 0V which is connected to **VGND**
+```
+VDD VPWR 0 3.3V
+VSS VGND 0 0V
+Va A VGND PULSE(0V 3.3V 0 0.1ns 0.1ns 2ns 4ns)
+```
+To run the Transient analysis, we can define the parameters,
+```
+.tran 1n 20n
+.control
+run
+.endc
+
+```
+
+Before running the spice tool, we need to ensure the correct definition of PMOS and NMOS is specified. In our case, the names of models being used are `pshort_model.0` for **PMOS** and `nshort_model.0` for **NMOS**.
+The Spice Simulation can be run using command,
+```
+ngspice sky130_inv.spice
+```
+
+It should return a window with successful Simulation and the values used which can be verified from our initial file
+![Spice](inv_ngspice.png)
+
+We can plot the output vs time graph using
+```
+plot y vs time a
+```
+![Graph](outgraph.png)
+
+The cell rise delay can be calculated using this output graph.
+![Cell Rise Delay](cellrise.png)
+
+Calculating the difference in rise times, we can get the Rise delay $ 2.206 - 2.149 = 0.057ns $. Using similar method we can calculate the falling delay from the falling edge, $ 4.074 - 4.050 = 0.024ns $.
