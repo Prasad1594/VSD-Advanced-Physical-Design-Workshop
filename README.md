@@ -139,7 +139,7 @@ We will try to extract the Spice netlist from the Inverter using **tkcon**
 extract all
 ```
 
-![Extract Spice Netlist](extractspice.png)
+![Extract Spice Netlist](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/extractspice.png)
 
 As seen in the image, it will extract the design into ext file. This ext file can be used to create the spice file.
 
@@ -150,7 +150,7 @@ ext2spice cthresh 0 rthresh 0
 ![Extract to Spice](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/ext2spice.png)
 
 This is the extracted Spice File
-![Spice File](spicefile.png)
+![Spice File](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/spicefile.png)
 
 It can be observed from the Spice file that the actual dimensions do not correspond to dimensions in Spice file which are 10000u. Hence, they need to be changed to the dimensions corresponding to 1 box which is 0.01u.
 
