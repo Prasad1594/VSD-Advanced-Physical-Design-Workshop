@@ -150,6 +150,7 @@ ext2spice cthresh 0 rthresh 0
 ![Extract to Spice](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/ext2spice.png)
 
 This is the extracted Spice File
+
 ![Spice File](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/spicefile.png)
 
 It can be observed from the Spice file that the actual dimensions do not correspond to dimensions in Spice file which are 10000u. Hence, they need to be changed to the dimensions corresponding to 1 box which is 0.01u.
@@ -192,6 +193,7 @@ plot y vs time a
 ![Graph](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/outgraph.png)
 
 The cell rise delay can be calculated using this output graph.
+
 ![Cell Rise Delay](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/cellrise.png)
 
 Calculating the difference in rise times, we can get the Rise delay $ 2.206 - 2.149 = 0.057ns $. Using similar method we can calculate the falling delay from the falling edge, $ 4.074 - 4.050 = 0.024ns $.
