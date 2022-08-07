@@ -131,7 +131,7 @@ We start by copying our sky130A .tech file to the cloned standard cell repositor
 
 We can see our recently copied CMOS inverter in Magic Tool by loading the tech file.
 
-![Inverter](inverter.png)
+![Inverter](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/inverter.png)
 
 We will try to extract the Spice netlist from the Inverter using **tkcon** 
 
@@ -147,7 +147,7 @@ As seen in the image, it will extract the design into ext file. This ext file ca
 ext2spice cthresh 0 rthresh 0
 ```
 
-![Extract to Spice](ext2spice.png)
+![Extract to Spice](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/ext2spice.png)
 
 This is the extracted Spice File
 ![Spice File](spicefile.png)
@@ -183,15 +183,15 @@ ngspice sky130_inv.spice
 ```
 
 It should return a window with successful Simulation and the values used which can be verified from our initial file
-![Spice](inv_ngspice.png)
+![Spice](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/inv_ngspice.png)
 
 We can plot the output vs time graph using
 ```
 plot y vs time a
 ```
-![Graph](outgraph.png)
+![Graph](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/outgraph.png)
 
 The cell rise delay can be calculated using this output graph.
-![Cell Rise Delay](cellrise.png)
+![Cell Rise Delay](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/cellrise.png)
 
 Calculating the difference in rise times, we can get the Rise delay $ 2.206 - 2.149 = 0.057ns $. Using similar method we can calculate the falling delay from the falling edge, $ 4.074 - 4.050 = 0.024ns $.
