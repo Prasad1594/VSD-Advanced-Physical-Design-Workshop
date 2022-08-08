@@ -197,3 +197,83 @@ The cell rise delay can be calculated using this output graph.
 ![Cell Rise Delay](https://github.com/Prasad1594/VSD-Advanced-Physical-Design-Workshop/blob/main/images/cellrise.png)
 
 Calculating the difference in rise times, we can get the Rise delay $2.206 - 2.149 = 0.057ns$. Using similar method we can calculate the falling delay from the falling edge, $4.074 - 4.050 = 0.024ns$.
+
+
+## Day 4 - Pre-Layout Timing Analysis
+
+Since we are using a custom designed inverter, we will also need to plug in our own lef file to the **flow.tcl**.
+
+It can be modified by adding a new source path as follows.
+
+![Custom lef](customflowtcl.png)
+
+We can then follow the steps to continue preparing the design in OpenLane using the same steps as earlier.
+To include additional refs to our custom invertor's design flow we have to use these two commands
+
+```
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+```
+
+Now, we can finally run the synthesis using
+```
+run_synthesis
+```
+
+As see from the image, there are **1554** instances of our cell design in the processor.
+
+![Our Cell](ourcell.png)
+
+The slack for this chip is more than desired and steps need to be taken to reduce it. We can change some variables in the design characteristic file to improve the timing. First let us change the **SYNTH_STRATEGY** which is used for ABC Logic synthesis and technology mapping. The default value is **2** which can be changed to **1** which will increase the area but reduce the timing. Additionally, we will also enable **SYNTH_BUFFERING** and **SYNTH_SIZING**
+
+```
+set ::env(SYNTH_STRATEGY) 1
+set ::env(SYNTH_SIZING) 1
+```
+
+We were able to reduce the slack from 23.59 to 6.67
+
+![reduced slack](reducedslack.png)
+
+
+After successful synthesis, we need to generate the floorplan using following commands
+
+```
+init_floorplan
+place_io
+global_placement_or
+detailed_placement
+tap_decap_or
+detailed_placement
+gen_pdn
+```
+This is the new processor using our custom cell
+![Routing](newfloorplan.png)
+
+After the STA analysis, we reduced the maximum Fan-out to 4 and reduced the size of the buffer as well to get a best delay of 0.12
+
+![Buffer](reducebuff.png)
+
+Finally we can run Clock Tree Synthesis using the command
+
+```
+run_cts
+```
+
+To use real clock for the synthesis, we need to read the created lef and def files in openroad. Openroad can be invoked by:
+```
+openroad
+```
+Then to read the files, just use
+```
+read_lef /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/07-08_22-25/tmp/merged.lef
+```
+Similarly, to read the def file. The def file should be the one post cts
+```
+read_def /home/patil.prasad19/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/07-08_22-25/results/cts/picorv32a.cts
+```
+
+After reading both the files, we can create a db.
+```
+write_db pico_cts.db
+```
