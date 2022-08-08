@@ -277,3 +277,19 @@ After reading both the files, we can create a db.
 ```
 write_db pico_cts.db
 ```
+
+## Day 5 - Generating Power Distribution Network an Routing
+
+After successfully running the CTS, we can proceed to generate Power Distribution network which will connect the power and ground lines for the cell.
+
+We can start the PDN process by running command in Openlane. It is important to note that pdn generator requires def file from Clock Tree Synthesis
+```
+gen_pdn
+```
+
+After generating the PDN, we can route the cell. The tool we will be using for Routing is TriTonRoute. We can invoke the routing tool using command
+```
+run_routing
+```
+
+The routing sequence takes a while to complete and runs multiple iterations until all the violations are removed. They have to be manually removed and the violations can be found in drc file created after running the routing.
